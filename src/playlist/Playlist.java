@@ -40,15 +40,12 @@ public class Playlist {
 			if (answer.toLowerCase().equals("no")) {
 				quit = true;
 			}
-
 		}
-		
-
 		return albums;
-
 	}
 	
 	public void printPlaylist() {
+		System.out.println("Your playlist called "+ nameOfPlaylist+ "  has the following songs: ");
 		for (Album album : albums) {
 			album.printAlbum();
 		}

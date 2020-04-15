@@ -25,36 +25,23 @@ public class Album {
 		}
 		
 	}
-	
-	public Album(LinkedList<Song> album, String name) {
-		super();
-		try {
-			this.album = fillAlbum(name);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.name = name;
-	}
 
 	private LinkedList<Song> getAlbum() {
 		return album;
 	}
 
-	private void setAlbum(LinkedList<Song> album) {
-		this.album = album;
-	}
 
 	private String getName() {
 		return name;
 	}
 
-	private void setName(String name) {
-		this.name = name;
-	}
-
 	public void addToAlbum(Song a) {
+		if (!isSongInAlbum(a.getTitle())) {
 		album.add(a);
-		System.out.println("The song " + a.getTitle() + " has been added.");
+		System.out.println("The song " + a.getTitle() + " has been added.");}else {
+			System.out.println("The song is already in the album, so it has not been added.");
+		}
+		
 	}
 
 	public void removeFromAlbum(Song a) {
@@ -63,13 +50,12 @@ public class Album {
 
 	}
 
-	public void searchInAlbum(Song a) {
-		if (album.contains(a)) {
-			System.out.println("This song is already in the album");
-			
-		} else {
-			System.out.println("This song is not in the album");
-		}
+	public boolean isSongInAlbum(String title) {
+		for (Song check : album) {
+			if(check.getTitle().equals(title)) {
+				return true;
+			}
+		} return false;
 
 	}
 	
@@ -103,7 +89,6 @@ public class Album {
 		try {
 			durationBuffer = reader.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		double duration = Double.valueOf(durationBuffer).doubleValue();
@@ -113,9 +98,15 @@ public class Album {
 	}
 	
 	public void printAlbum() {
-		System.out.println("The name of the album is "+getName()+" and it has "+getAlbum().size()+" songs.");
+		int a = 1;
+		System.out.println("___________________________________________________________________");
+		System.out.println("The name of the "+a+" album is "+getName()+" and it has "+getAlbum().size()+" songs.");
+		System.out.println("___________________________________________________________________");
+		a++;
+		int i = 1;
 		for (Song song : album ) {
-		System.out.println("The name of the  song is "+song.getTitle()+" and the duration is "+song.getDuration());
+		System.out.println("The name of the "+i+" song is "+song.getTitle()+" and the duration is "+song.getDuration());
+		i++;
 	}}
 
 
